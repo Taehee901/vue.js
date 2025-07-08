@@ -18,7 +18,7 @@
       <option value="052">부산</option>
     </select>
   </p>
-  <!--input태그는 v-model,v-binding:-->
+  <!--input태그는 v-model,v-binding: 확인-->
   <p>
     <label> {{ checking }}</label>
     <input
@@ -29,7 +29,7 @@
       checked
     />
   </p>
-
+  <!-- ffff -->
   <div>
     <label
       ><input type="radio" value="radio1" v-model="radioCheck" />서울</label
