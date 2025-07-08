@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import DataBinding from "../views/DataBinding.vue";
+// import DataBinding from "../views/DataBinding.vue";
+// import DataBinding from "../views/DataBindingAttr.vue";
+import DataBinding from "../views/DataBindingList.vue";
 //배열-객체,url+컴포넌트 연결하는 작업 router
 //요청들어오지않아도 보여줌,한페이지에서여러기능할경우
 const routes = [

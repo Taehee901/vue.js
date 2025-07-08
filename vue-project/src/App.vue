@@ -1,4 +1,4 @@
-<!--router-link:보여줘야할 컴포넌트의 경로home누르면 / 라우터 정보들고있음, url이 들어오면 router-view태그:보여줘야할 컴포넌트를 화면에 보여줌?-->
+<!--router-link:보여줘야할 컴포넌트의 경로home누르면 / 라우터 정보들고있음, url이 들어오면 router-view태그:보여줘야할 컴포넌트에 대한 것들을 화면에 보여줌?-->
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
