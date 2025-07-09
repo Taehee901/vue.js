@@ -7,13 +7,16 @@
   <ChildComponent v-on:send-message="sendMessage" ref="child_comp" />
 </template>
 <script>
-import ChildComponent from "./ChildComponent.vue";
-
+// import ChildComponent from "./ChildComponent.vue";
+import ChildComponent from "./ChildComponent1.vue";
 export default {
   data() {
     return {
       msg: "홍길동",
     };
+  },
+  mounted() {
+    this.$refs.child_comp.$refs.btn.click();
   },
   //전달받은데이터
   components: { ChildComponent },
