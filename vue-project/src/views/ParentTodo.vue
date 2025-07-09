@@ -176,7 +176,7 @@ h1 {
       />
       <button @click="addTodo">추가</button>
     </div>
-
+    <!-- 값과 값의 종류가 모두 같은지 확인 ==== -->
     <div v-if="todoList.length === 0" class="empty">할 일이 없습니다.</div>
 
     <TodoItem
