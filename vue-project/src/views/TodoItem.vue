@@ -31,8 +31,9 @@ function emitDelete() {
   margin-bottom: 8px;
 }
 </style> -->
-<!-- ============= -->
-<template>
+<!-- ========setup방식===== -->
+<!-- keyup 이벤트는 사용자가 키보드에서 손을 떼었을 때 발생하는 이벤트 -->
+<!-- <template>
   <div class="todo-item">
     <template v-if="!isEditing">
       <span>{{ todo.text }}</span>
@@ -43,7 +44,6 @@ function emitDelete() {
     </template>
 
     <template v-else>
-      <!-- keyup 이벤트는 사용자가 키보드에서 손을 떼었을 때 발생하는 이벤트 -->
       <input
         v-model="editText"
         @keyup.enter="saveEdit"
@@ -97,6 +97,113 @@ function cancelEdit() {
 function emitDelete() {
   emit("delete-todo", props.todo.id);
 }
+</script>
+
+<style scoped>
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.todo-item input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-group button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.btn-group button:nth-child(2) {
+  background-color: #f44336;
+}
+
+.btn-group button:hover {
+  opacity: 0.8;
+}
+</style> -->
+<!--  -->
+<template>
+  <div class="todo-item">
+    <template v-if="!isEditing">
+      <span>{{ todo.text }}</span>
+      <div class="btn-group">
+        <button @click="startEdit">수정</button>
+        <button @click="emitDelete">삭제</button>
+      </div>
+    </template>
+    <template v-else>
+      <input
+        v-model="editText"
+        @keyup.enter="saveEdit"
+        @keyup.esc="cancelEdit"
+      />
+      <div class="btn-group">
+        <button @click="saveEdit">저장</button>
+        <button @click="cancelEdit">취소</button>
+      </div>
+    </template>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "TodoItem",
+  props: {
+    todo: {
+      type: Object,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      isEditing: false,
+      editText: "",
+    };
+  },
+  methods: {
+    startEdit() {
+      this.isEditing = true;
+      this.editText = this.todo.text;
+    },
+    saveEdit() {
+      if (this.editText.trim() === "") {
+        this.cancelEdit();
+        return;
+      }
+      this.$emit("update-todo", {
+        id: this.todo.id,
+        text: this.editText,
+      });
+      this.isEditing = false;
+    },
+    cancelEdit() {
+      this.isEditing = false;
+      this.editText = "";
+    },
+    emitDelete() {
+      this.$emit("delete-todo", this.todo.id);
+    },
+  },
+};
 </script>
 
 <style scoped>

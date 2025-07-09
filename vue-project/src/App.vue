@@ -9,7 +9,7 @@
     <router-link to="/todo">Todo</router-link>
   </nav>
   <router-view />
-  <p>App.vue : {{ msg }}</p>
+  <!-- <p>App.vue : {{ msg }}</p> -->
 </template>
 
 <script>
