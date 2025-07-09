@@ -1,19 +1,21 @@
+<!-- v-on:click="Listclick(clis.id)"
+-->
+<!-- t-text="msg"사용 => name값 안나옴 -->
+<!-- 집에서 다시 해야함-->
 <!-- <template>
   <div>
     <h2 style="margin: 5px">My To Do List</h2>
-    <input type="text" placeholder="Title..." />
-    <button  v-on:click="clickEvt">Add</button>
+    <input type="text" placeholder="Title..." v-model="msg" />
+    <button v-on:click="clickEvt">Add</button>
   </div>
   <ul id="myUL">
     <li
       v-bind:key="clis.id"
       v-for="clis in todoList"
-      v-bind:class="{{ checked: clis.chk }}"
-      v-on:click="Listclick(clis.id)"
+      v-bind:class="{ checked: clis.chk }"
     >
       {{ clis.name }}
     </li>
-    <span>
   </ul>
 </template>
 <script>
@@ -30,11 +32,221 @@ export default {
   },
   methods: {
     clickEvt() {
-      let nlis = this.todoList.name;
-      console.log(nlis);
+      let mid = this.todoList[this.todoList.length - 1].id; //마지막요소 this.todoList.lenght-1 해당되는 id
+      let todo = { id: mid + 1, name: this.msg, chk: false };
+      this.todoList.push(todo); //push;추가,데이터가변경된거 감지해야지 추가됨
+      console.log(this.msg);
     },
   },
 };
 </script>
 <style></style> -->
-<!-- 집에서 다시 해야함-->
+<!--   //todo추가
+  todoInsert: {
+    query: `insert into t_product set ?`,
+  }, -->
+<!-- ==================================================== 서버프로그램으로부터 데이터 가져오는 방식 -->
+<template>
+  <div id="myDIV" class="header">
+    <h2 style="margin: 5px">My To Do List</h2>
+    <input type="text" v-model="msg" placeholder="Title..." />
+    <span v-on:click="newElement" class="addBtn">Add</span>
+  </div>
+  <!-- 하위요소와 상위요소에 이벤트가 둘다 발생하게 되니,상위요소 이벤트 차단:stop -->
+  <ul id="myUL">
+    <li
+      v-bind:key="todo.id"
+      v-for="todo in todoList"
+      v-bind:class="{ checked: todo.chk }"
+      v-on:click="itemClick(todo.id)"
+    >
+      {{ todo.name }}
+      <span v-on:click.stop="removeTodo(todo.id)" class="close">X</span>
+    </li>
+  </ul>
+</template>
+
+<script>
+//axios서버관련 정보 불러옴
+import axios from "axios";
+export default {
+  data() {
+    return {
+      msg: "",
+      todoList: [],
+    };
+  },
+  // http://192.168.0.10:3000/todoList
+  mounted() {
+    axios({
+      method: "get",
+      url: "http://localhost:3000/todoList",
+    }).then((result) => {
+      console.log(result.data);
+      this.todoList = result.data;
+    });
+  },
+  methods: {
+    newElement() {
+      // 새로운 요소 추가하기. 신규id 생성하기.
+      // let max_id = this.todoList.reduce((acc, item) => {
+      //   return acc > item.id ? acc : item.id;
+      // }, 0);
+      let max_id = this.todoList[this.todoList.length - 1].id;
+      let todo = { id: max_id + 1, name: this.msg, chk: false }; //새로운요소추가하기.
+      this.todoList.push(todo); // 배열에 추가.
+    },
+    itemClick(no) {
+      // 스타일 변경하기.
+      for (let todo of this.todoList) {
+        if (todo.id == no) {
+          todo.chk = !todo.chk;
+        }
+      }
+    },
+    removeTodo(no) {
+      axios({
+        method: "delete",
+        url: "http://localhost:3000/todo/" + no,
+      })
+        .then((result) => {
+          console.log(result);
+          //삭제요청의 성공/실패
+          if (result.data.errno) {
+            //console.log(result);
+            alert("처리실패");
+            return;
+          }
+          // 배열에서 제거하기.
+          this.todoList = this.todoList.filter((item) => item.id != no);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+};
+</script>
+
+<style scoped>
+body {
+  margin: 0;
+  min-width: 250px;
+}
+
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove margins and padding from the list */
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: #ddd;
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: "";
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Style the header */
+.header {
+  background-color: #f44336;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+}
+
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the input */
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+/* Style the "Add" button */
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+</style>

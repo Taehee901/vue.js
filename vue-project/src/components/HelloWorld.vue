@@ -87,6 +87,7 @@
 </template>
 
 <script>
+//props:상위 ->하위 정보전달할때
 export default {
   name: "HelloWorld",
   props: {
