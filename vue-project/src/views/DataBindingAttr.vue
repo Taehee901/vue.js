@@ -34,6 +34,7 @@
 </template>
 
 <script>
+//화면요소와 데이터를
 export default {
   //data영역.
   data() {

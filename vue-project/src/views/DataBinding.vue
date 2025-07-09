@@ -31,15 +31,9 @@
   </p>
   <!-- ffff -->
   <div>
-    <label
-      ><input type="radio" value="radio1" v-model="radioCheck" />서울</label
-    >
-    <label
-      ><input type="radio" value="radio2" v-model="radioCheck" />대전</label
-    >
-    <label
-      ><input type="radio" value="radio3" v-model="radioCheck" />부산</label
-    >
+    <label><input type="radio" value="서울" v-model="radioCheck" />서울</label>
+    <label><input type="radio" value="대전" v-model="radioCheck" />대전</label>
+    <label><input type="radio" value="부산" v-model="radioCheck" />부산</label>
   </div>
   <span>선택한지역:{{ radioCheck }}</span>
   <!--양방향바인딩:화면에서 변경된값이  모델에서도 변경되는거(데이터속성도변경됨)-->

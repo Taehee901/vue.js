@@ -4,7 +4,7 @@
 <!--즉 v-if는 조건이 false면 DOM자체가 만들어지지 않고 true될때만 새로 DOM을 만듦,mounted()시점에서는 DOM이 없을 수 도 있다-->
 <!--v-show는 DOM이 항상 만들어져 있지만 display:none으로 숨겨두고,mounted()시점에서 항상 DOM이 존재한다.-->
 <!--속도: v-if 느리고 v-show는 빠름 -->
-<!-- 가끔쓰는거는 v-if  자주 켜고 끌대는 v-show -->
+<!-- 가끔쓰는거는 v-if  자주 켜고 끌 경우는 v-show -->
 <template>
   <div>
     <h2>v-if 예제</h2>
