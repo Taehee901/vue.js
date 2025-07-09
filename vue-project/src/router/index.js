@@ -7,7 +7,8 @@ import HomeView from "../views/HomeView.vue";
 // import DataBinding from "../views/ComputedView.vue";
 // import DataBinding from "../views/WatchView.vue";
 // import DataBinding from "../views/TodoView.vue";
-import DataBinding from "../views/NestedComponenteView.vue";
+// import DataBinding from "../views/NestedComponenteView.vue";
+import DataBinding from "../views/ParentComponet.vue";
 import ShowVue from "../views/ShowVue.vue";
 
 //배열-객체,url+컴포넌트 연결하는 작업 router
