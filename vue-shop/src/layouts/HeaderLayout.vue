@@ -80,3 +80,23 @@
     </div>
   </nav>
 </template>
+<script>
+/*===작업이력=====
+  File:HeaderLayout.vue
+  Content: 상품목록,등록화면의 메뉴 출력. 라우팅 정보 셋팅.
+  Created:user 
+  Date: 2025.07.10
+  */
+export default {
+  data() {
+    return {
+      page: "",
+    };
+  },
+  methods: {
+    setPage() {
+      //
+    },
+  },
+};
+</script>
