@@ -91,10 +91,14 @@ export default {
   data() {
     return {
       page: "",
+      user: { email: "" },
     };
   },
   methods: {
     setPage() {
+      //
+    },
+    logout() {
       //
     },
   },
