@@ -8,15 +8,32 @@
     <router-link to="/show">Test</router-link> |
     <router-link to="/todo">Todo</router-link>
   </nav>
+  <!--하위컴포넌트에 전달할 정보-->
+  <div>
+    <h3>App.vue(부모컴포넌트 - Provider)</h3>
+    <p>
+      제공자이름:<strong>{{ username }}</strong>
+    </p>
+    <MiddleComponent />
+  </div>
   <router-view />
   <!-- <p>App.vue : {{ msg }}</p> -->
 </template>
 
 <script>
+import MiddleComponent from "./views/MiddleComponent.vue";
 export default {
+  components: { MiddleComponent },
   data() {
     return {
       msg: "",
+      username: "홍길동",
+    };
+  },
+  //함수 통해 전달하고 싶은 속성이름:속성값 을 정의한다.
+  provide() {
+    return {
+      providerUserName: this.username,
     };
   },
 };

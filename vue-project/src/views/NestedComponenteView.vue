@@ -5,6 +5,7 @@
   <!--동적으로 값전달-->
   <!-- :하위요소데이터전달?-->
   <!-- title이라는 prop에 titleMsg 값을 바인딩하는 역할 -->
+  <!-- :실제 값은 ""-->
   <PageTitle
     v-bind:title="titleMsg"
     v-bind:likes="likeCnt"

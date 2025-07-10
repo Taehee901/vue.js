@@ -10,7 +10,8 @@ import HomeView from "../views/HomeView.vue";
 // import DataBinding from "../views/NestedComponenteView.vue";
 // import DataBinding from "../views/ParentComponet.vue";
 // import DataBinding from "../views/ParentComponet2.vue";
-import DataBinding from "../views/ParentComponet2.vue";
+// import DataBinding from "../views/ParentComponet2.vue";
+import DataBinding from "../views/ParentButton.vue";
 import ShowVue from "../views/ShowVue.vue";
 import TodoVue from "../views/ParentTodo.vue";
 
