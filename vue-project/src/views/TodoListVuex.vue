@@ -27,6 +27,7 @@ export default {
   //계산된속성,mounted사용하기 싫으면
   computed: {
     allTodos() {
+      // 속성값을 $sqtore로 써서 내용이 안나왔음
       return this.$store.getters.todoList;
     },
   },
