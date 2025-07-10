@@ -12,6 +12,7 @@
     v-bind:isOk="OkValue"
     v-bind:members="memberList"
   >
+    <!--ㄴㄴ  -->
     <!-- html요소 -->
     <template v-slot><p>slot의 내용입니다.</p></template>
     <template v-slot:header><p>Header의 slot의 내용입니다.</p></template>

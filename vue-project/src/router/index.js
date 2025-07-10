@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+//
 // import DataBinding from "../views/DataBinding.vue";
 // import DataBinding from "../views/DataBindingAttr.vue";
 // import DataBinding from "../views/DataBindingList.vue";
@@ -11,7 +12,8 @@ import HomeView from "../views/HomeView.vue";
 // import DataBinding from "../views/ParentComponet.vue";
 // import DataBinding from "../views/ParentComponet2.vue";
 // import DataBinding from "../views/ParentComponet2.vue";
-import DataBinding from "../views/ParentButton.vue";
+// import DataBinding from "../views/ParentButton.vue";
+import DataBinding from "../views/TodoListVuex.vue";
 import ShowVue from "../views/ShowVue.vue";
 import TodoVue from "../views/ParentTodo.vue";
 

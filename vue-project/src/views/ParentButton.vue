@@ -9,7 +9,7 @@
   <MyButton @my-event="eventClick" label="취소" />
   <MyButton @my-event="eventClick" />
 </template>
-
+<!-- ㄴㄴ -->
 <script>
 import MyButton from "../components/MyButton.vue";
 export default {

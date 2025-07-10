@@ -11,6 +11,7 @@ export default {
       msg: "",
     };
   },
+  //
   methods: {
     //이벤트핸들러
     sendMessage() {

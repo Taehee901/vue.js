@@ -9,6 +9,7 @@
   <!-- 환영합니다 h3태그말고는 다 속성가짐-->
   <slot></slot>
   <ul>
+    <!--  -->
     <li v-bind:key="i" v-for="(member, i) in members">
       이름:{{ member.name }},나이:{{ member.age }}
     </li>
