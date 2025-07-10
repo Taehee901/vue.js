@@ -15,15 +15,16 @@
       </div>
     </div>
   </div>
+  <LoginForm />
 </template>
 <script>
 //import HangmanGame from "./components/HangmanGame.vue";
-
+import LoginForm from "@/components/LoginForm.vue";
 export default {
   name: "App",
-  // components: {
-  //   HangmanGame,
-  // },
+  components: {
+    LoginForm,
+  },
 };
 </script>
 <style>

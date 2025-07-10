@@ -1,5 +1,4 @@
 // src/store/index.js
-import LoginForm from "@/components/LoginForm.vue";
 import { createStore } from "vuex";
 
 export default createStore({
