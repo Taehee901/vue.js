@@ -47,6 +47,7 @@ export default {
   }, -->
 <!-- ==================================================== 서버프로그램으로부터 데이터 가져오는 방식 -->
 <template>
+  <h3>todoview.vue</h3>
   <div id="myDIV" class="header">
     <h2 style="margin: 5px">My To Do List</h2>
     <input type="text" v-model="msg" placeholder="Title..." />
