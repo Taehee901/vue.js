@@ -1,9 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 // import ImageInsert from "../views/ImageInsert.vue";
-// import PoductList from "../views/PoductList.vue";
-// import ImageInsert from "@/views/ImageInsert.vue";
-// import PoductList from "@/views/PoductList.vue";
+import PoductList from "../views/PoductList.vue";
 const routes = [
   {
     path: "/",
@@ -16,11 +14,11 @@ const routes = [
   //   name: "imageInsert",
   //   component: ImageInsert,
   // },
-  // {
-  //   path: "/list",
-  //   name: "poductList",
-  //   component: PoductList,
-  // },
+  {
+    path: "/list",
+    name: "poductList",
+    component: PoductList,
+  },
 
   {
     path: "/about",
