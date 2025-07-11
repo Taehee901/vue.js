@@ -18,12 +18,13 @@
   <LoginForm />
 </template>
 <script>
-//import HangmanGame from "./components/HangmanGame.vue";
+import HangmanGame from "./components/HangmanGame.vue";
 import LoginForm from "@/components/LoginForm.vue";
 export default {
   name: "App",
   components: {
     LoginForm,
+    HangmanGame,
   },
 };
 </script>
@@ -59,7 +60,39 @@ a:hover {
   box-sizing: border-box;
 }
 
-/* 콘텐츠 중앙 카드 스타일 */
+/* 레이아웃 컨테이너: 좌우 분할 */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* 왼쪽 고정 사이드바 (행맨 게임 영역) */
+.sidebar {
+  width: 280px; /* 원하는 고정 너비 */
+  position: fixed; /* 화면에 고정 */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: #1f1f1f;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto; /* 내용 넘칠 때 스크롤 */
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.7);
+}
+
+/* 오른쪽 메인 영역 (게시판 영역) */
+.main {
+  margin-left: 280px; /* sidebar 너비만큼 왼쪽 여백 */
+  flex: 1; /* 나머지 공간 차지 */
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #2c2c2c, #1f1f1f);
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* 게시판 컨테이너 카드 */
 .container {
   width: 100%;
   max-width: 960px;
@@ -199,6 +232,20 @@ nav a:hover {
   nav a {
     display: block;
     margin: 10px 0;
+  }
+  /* 사이드바를 숨기고 메인 영역을 전체로 확장 */
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+  }
+  .main {
+    margin-left: 0;
+    padding: 20px;
+  }
+  .layout {
+    flex-direction: column;
   }
 }
 </style>

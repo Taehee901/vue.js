@@ -17,7 +17,7 @@
           :key="i"
           v-for="(product, i) in productList"
         >
-          <!-- src경로와 매핑작업필요 -->
+          <!-- src경로와 매핑작업필요  -->
           <div class="card" style="width: 18rem">
             <a @click="goToDetail(product.id)" style="cursor: pointer"
               ><img
@@ -71,7 +71,7 @@
   Date: 2025.07.11
   */
 //모듈이용시 설치 필요 npm install axios --save
-import axios from "axios";
+// import axios from "axios";
 export default {
   data() {
     return {
@@ -79,24 +79,43 @@ export default {
     };
   },
   methods: {
-    goToDetail() {
-      //
+    //상품상세이미지 이동 -> 라우터 등록 ->상품id파라미터받아와야함
+    // 이미지화면클릭시 -> product_id를 하나 들고옴
+    goToDetail(product_id) {
+      //기존방식:정적페이지 라우팅
+      //this.$router.push('/detail',param),경로가 와도 되고,param,라우터 정보가 바뀔경우 다 찾아서 바꿔야하고,
+      //this.$router.push('/name',param) : 장점 다시알아보기
+      //지정한 파라미터 이름 query
+      this.$router.push({
+        name: "productDetail",
+        query: { product_id: product_id },
+      });
+    },
+    //처리된결과를 먼저가져와서 정상처리 x async를 안쓰니 이후에 처리되서
+    async getProductList() {
+      this.productList = await this.$api("/api/productList", {});
     },
   },
   //데이터 로딩시점에 마운티드 훅이나 크리에이티드훅을 이용해서
   //데이터 부분 param 값 넘겨줌 console.log(result)
   //오타 주의 :methods -> method
+  //컴포넌트 생성되는 시점에서 화면에서 마운팅된 시점에서 발생하는거라
   mounted() {
-    axios({
-      method: "post",
-      // url: "http://localhost:3000/api/productList",
-      url: "/api/productList",
-      data: {},
-    })
-      .then((result) => {
-        this.productList = result.data;
-      })
-      .catch((err) => console.log(err));
+    //component 생성후 화면에 출력되는 시점.
+    this.getProductList();
+    //1.url,2.data(전달될 데이터)
+    // this.productList = this.$api("/api/productList", {});
+    //mixins사용 안했을때
+    // axios({
+    //   method: "post",
+    //   // url: "http://localhost:3000/api/productList",
+    //   url: "/api/productList",
+    //   data: {},
+    // })
+    //   .then((result) => {
+    //     this.productList = result.data;
+    //   })
+    //   .catch((err) => console.log(err));
   },
 };
 </script>

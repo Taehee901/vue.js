@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 // import ImageInsert from "../views/ImageInsert.vue";
 import PoductList from "../views/PoductList.vue";
+import ProductDetail from "../views/ProductDetail.vue";
 const routes = [
   {
     path: "/",
@@ -14,10 +15,16 @@ const routes = [
   //   name: "imageInsert",
   //   component: ImageInsert,
   // },
+  //productDetail name속성으로도 페이지 이동 가능함
   {
     path: "/list",
     name: "poductList",
     component: PoductList,
+  },
+  {
+    path: "/detail",
+    name: "productDetail",
+    component: ProductDetail,
   },
 
   {
