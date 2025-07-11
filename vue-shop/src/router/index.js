@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-// import ImageInsert from "../views/ImageInsert.vue";
+import ImageInsert from "../views/ImageInsert.vue";
 import PoductList from "../views/PoductList.vue";
 import ProductDetail from "../views/ProductDetail.vue";
+import SalesList from "../views/SalesList.vue";
 const routes = [
   {
     path: "/",
@@ -10,11 +11,11 @@ const routes = [
     component: HomeView,
   },
   // 라우트 정보등록할때 경로 or 이름으로 등록 가능
-  // {
-  //   path: "/image_insert",
-  //   name: "imageInsert",
-  //   component: ImageInsert,
-  // },
+  {
+    path: "/image_insert",
+    name: "imageInsert",
+    component: ImageInsert,
+  },
   //productDetail name속성으로도 페이지 이동 가능함
   {
     path: "/list",
@@ -25,6 +26,11 @@ const routes = [
     path: "/detail",
     name: "productDetail",
     component: ProductDetail,
+  },
+  {
+    path: "/sales",
+    name: "salesList",
+    component: SalesList,
   },
 
   {

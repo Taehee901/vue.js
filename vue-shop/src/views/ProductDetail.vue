@@ -172,7 +172,7 @@ export default {
   //함수 methods:
   methods: {
     calculatePrice(qty) {
-      //
+      //0이하일 경우 -값나오는 거 방지
       let total = this.total + qty;
       if (total > 0) {
         this.total = this.total + qty;
@@ -180,6 +180,7 @@ export default {
       }
     },
     getCurrencyFormat(price) {
+      //Intl.NumberFormat Mdn web docs 참고
       // 한국원화
       const krwformatter = new Intl.NumberFormat("ko-KR", {
         style: "currency",
@@ -198,6 +199,7 @@ export default {
       this.totalPrice = this.total * this.productDetail.product_price;
     },
     //슬라이스 이미지
+    //오류원인 product.js의 쿼리문 테이블t_image -> t_images로 해둠
     async getProductMainImages() {
       this.productImage = await this.$api("/api/productMainImages", {
         param: [this.productId],

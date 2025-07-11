@@ -85,22 +85,68 @@
 /*===작업이력=====
   File:HeaderLayout.vue
   Content: 상품목록,등록화면의 메뉴 출력. 라우팅 정보 셋팅.
-  Created:user 
+  Created:user
   Date: 2025.07.10
   */
 export default {
   data() {
     return {
       page: "",
-      user: { email: "" },
+      user: {},
+      // user: { email: "" },
     };
   },
   methods: {
+    //셋팅작업 필요
+    kakaoLogin() {
+      window.Kakao.Auth.login({
+        scope: "profile_nickname, account_email",
+        success: this.getKakaoAccount,
+      });
+    },
+    getKakaoAccount() {
+      window.Kakao.API.request({
+        url: "/v2/user/me",
+        success: (res) => {
+          console.log(res);
+          //console.확인결과 변함o
+          const kakao_account = res.kakao_account;
+          const nickname = kakao_account.profile.nickname;
+          const email = kakao_account.email;
+          console.log(nickname, email);
+          this.login(kakao_account);
+          alert("로그인 성공");
+          this.user = { email: email };
+        },
+        fail: (err) => {
+          console.log(err);
+          alert("인증실패");
+        },
+      });
+    },
+    async login(account) {
+      //DB insert
+      await this.$api("/api/signUp", {
+        //1.2 값 객체타입
+        param: [
+          { email: account.email, nickname: account.nickname, type: 1 },
+          { email: account.email },
+        ],
+      });
+      console.log("insert !!");
+    },
     setPage() {
       //
     },
+    //인증된 사람만 회원가입됨
     logout() {
       //
+      window.Kakao.Auth.logout((response) => {
+        console.log(response);
+      });
+      alert("로그아웃");
+      this.user = {}; //값이 없으면 목록이동
+      this.$router.push({ path: "/list" });
     },
   },
 };

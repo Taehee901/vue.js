@@ -1,5 +1,7 @@
 //반복사용하는 모듈을 함수로 정의 -> 전역 사용
 import axios from "axios";
+//import { reject } from "core-js/fn/promise";
+//import { resolve } from "path";
 //$붙인 이유 -> 공통모듈 쓸때는 다른 사람이 사용할 수 있으니 $붙여서 사용,하위컴포넌트에서 중복사용이니 특이한 이름으로 사용하기 위해 붙임.
 // 사용하는 함수 이름 지정
 //요청방식은 app.js지정되어있어 url,data만사용
@@ -22,6 +24,15 @@ export default {
       });
       console.log(result);
       return result.data;
+    },
+    $base64(file) {
+      return new Promise((resolve) => {
+        let fn = new FileReader();
+        fn.onload = (e) => {
+          resolve(e.target.result); //;base64, dbksifjisdjfi ->then메소드 전달
+        };
+        fn.readAsDataURL(file);
+      });
     },
   },
 };
